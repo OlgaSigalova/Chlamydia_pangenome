@@ -1,0 +1,11 @@
+download file Pfam-A.hmm
+extract hmms for pfams PF03797, PF02415, PF07548
+save them to file pmp.hmm
+prepare hmm database:
+	hmmpress pmp.hmm 
+write table of hits to txt file + info to tmp file
+hmmscan -o tmp --tblout Chlamydia_pmp.txt  -E 0.1 --noali pmp.hmm  ../out/Chlamydia_proteins.fasta
+
+Autotransporter      PF03797.15
+ChlamPMP_M           PF07548.7 
+Autotransporter      PF03797.15
