@@ -1,1 +1,0 @@
-qsub -pe smp 8 -l longjob -cwd -V -b y -N InterproChlamydia /home/OlgaSigalova/interproscan-5.8-49.0/interproscan.sh -goterms -i  /home/bsgroup/Chlamydia/RAST_parsed/Chlamydia_proteins.fasta  -d /home/bsgroup/InterProScan_out/

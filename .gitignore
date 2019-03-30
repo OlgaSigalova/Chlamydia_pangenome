@@ -1,3 +1,7 @@
 tests/
 .DS_Store
+0.parsing_and_annotations/
+reviewer_comments.docx
 
+data_test/C002.gbk
+data_test/C005.gbk
