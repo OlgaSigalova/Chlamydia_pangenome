@@ -1,10 +1,14 @@
 # Dependencies
 
+Software:  
 - MySQL Server  
-- python2.7  
-- MySQLdb package (python)   
-- ete2 package (python)   
-  
+- python=2.7  
+- biopython=1.67
+
+Python libraries:  
+- MySQLdb   
+- ete2  
+
 # Data  
 
 ## 1. Genomes  

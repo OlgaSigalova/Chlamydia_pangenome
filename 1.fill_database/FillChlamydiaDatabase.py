@@ -248,7 +248,7 @@ main_dir="/home/bsgroup/Chlamydia/"
 # subset of relevant genomes
 genomes=pd.read_csv(main_dir+"info/genomes_info_jun_2016.csv")
 genomes=genomes[genomes["specificity"]!='recombinant'].replace(np.nan,'', regex=True)
-filtered=['C091','C086','C112','C113','C017','C135','C131'] # these genomes are either duplicates (strain or whole genome) or of bad assembly
+filtered=['C091','C086','C110','C112','C113','C017','C131','C135'] # these genomes are either duplicates (strain or whole genome) or of bad assembly
 genomes=genomes[~genomes["genome_id"].isin(filtered)]
 genomes.index=genomes["genome_id"]
 
@@ -257,18 +257,17 @@ genome_ids_withoutOutgroup=[x for x in genome_ids_withOutgroup if x!="W001"]
 genome_ids_nodraft=genomes[(genomes["contigs"]==1) & (genomes["genome_id"]!="W001")]["genome_id"].tolist()    # without outgroup, no draft genomes
 
 # table of Orthologous groups ( the code allows to make analysis on a subsample of OrthoMCL output. here - genome_ids)
-OGs_withoutOutgroup= open(main_dir+'orthoMCL_jun_2016/results/Ogroups_without_outgroup_with_singletons.txt', "r")
-OGs_withOutgroup=open(main_dir+'orthoMCL_jun_2016/results/Ogroups_with_outgroup_with_singletons.txt', "r")
+
 prot2og_withoutOutgroup=dict()
 og2prot_withoutOutgroup=dict()
 
 prot2og_withOutgroup=dict()
 og2prot_withOutgroup=dict()
 
-# without outgroup, no draft genomes
-prot2og_nodraft=dict()
+prot2og_nodraft=dict() # without outgroup, no draft genomes
 og2prot_nodraft=dict()
 
+OGs_withoutOutgroup= open(main_dir+'orthoMCL_jun_2016/results/Ogroups_without_outgroup_with_singletons.txt', "r")
 # only genus Chlamydia (128 genomes)     
 for line in OGs_withoutOutgroup:
     [group,proteins]=line.rstrip().split(":")
@@ -278,6 +277,7 @@ for line in OGs_withoutOutgroup:
     for prot in proteins:
         prot2og_withoutOutgroup[prot]=group
 
+OGs_withOutgroup=open(main_dir+'orthoMCL_jun_2016/results/Ogroups_with_outgroup_with_singletons.txt', "r")
 # full sample (129 genomes)
 for line in OGs_withOutgroup:
     [group,proteins]=line.rstrip().split(":")
@@ -285,8 +285,9 @@ for line in OGs_withOutgroup:
     proteins=[x.split("|")[1] for x in proteins if x.split("|")[0] in genome_ids_withOutgroup]
     og2prot_withOutgroup[group]=proteins
     for prot in proteins:
-        prot2og_withOutgroup[prot]=group       
+        prot2og_withOutgroup[prot]=group
 
+OGs_withoutOutgroup= open(main_dir+'orthoMCL_jun_2016/results/Ogroups_without_outgroup_with_singletons.txt', "r")
 # only full genomes of genus Chlamydia (116 genomes)
 for line in OGs_withoutOutgroup:
     [group,proteins]=line.rstrip().split(":")
@@ -357,7 +358,7 @@ for genome_id in genome_ids_withOutgroup:
                             to_end_arr.append(to_end) 
                             cursor.execute(sql_fsh,(frameshift_id, OrthMCL_prot_code,fs_number,to_end,gap_size)) 
                     else:
-                        nucl_seq__uc=gb_record.seq[start:end]
+                        nucl_seq_uc=gb_record.seq[start:end]
                         for i in range(num_frameshifts):
                             n+=1
                             frameshift_id=genome_id+"_fs"+str(n)
@@ -369,7 +370,7 @@ for genome_id in genome_ids_withOutgroup:
                             cursor.execute(sql_fsh,(frameshift_id, OrthMCL_prot_code,fs_number,to_end,gap_size)) 
                     gap_size_arr=";".join(gap_size_arr)
                     to_end_arr=";".join(to_end_arr)
-                    cursor.execute(sql_fsg,(OrthMCL_prot_code,num_frameshifts,to_end_arr,gap_size_arr,nucl_seq__uc))
+                    cursor.execute(sql_fsg,(OrthMCL_prot_code,num_frameshifts,to_end_arr,gap_size_arr,nucl_seq_uc))
 				#get EC numbers 
                 EC=""
                 try:
