@@ -9,7 +9,7 @@ gbk_dir = "/home/bsgroup/Chlamydia/genomes_new_RAST_annotated"
 # original names of gbk files
 v1 = fnmatch.filter(os.listdir(gbk_dir), '*.gbk')
 # new names (D + genome counter) 
-v2 = ["D" + str(x + 1).zfill(3) for x in range(len(v1))]
+v2 = ["D" + str(x + 1).zfill(3) + ".gbk" for x in range(len(v1))]
 
 
 gbk_names_dict = dict(zip(v1, v2))
