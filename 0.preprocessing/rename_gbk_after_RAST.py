@@ -4,7 +4,7 @@ import fnmatch
 import pandas as pd
 import numpy as np
 
-gbk_dir = "/Users/sigalova/Desktop/Chlamydia_pangenome/data/genomes_new"
+gbk_dir = "/home/bsgroup/Chlamydia/genomes_new_RAST_annotated"
 
 # original names of gbk files
 v1 = fnmatch.filter(os.listdir(gbk_dir), '*.gbk')
