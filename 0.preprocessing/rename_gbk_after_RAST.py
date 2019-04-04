@@ -4,7 +4,7 @@ import fnmatch
 import pandas as pd
 import numpy as np
 
-gbk_dir = "/home/bsgroup/Chlamydia/genomes_new_RAST_annotated"
+gbk_dir = "/home/bsgroup/Chlamydia/genomes_apr_2019"
 
 # original names of gbk files
 v1 = fnmatch.filter(os.listdir(gbk_dir), '*.gbk')
@@ -16,7 +16,7 @@ gbk_names_dict = dict(zip(v1, v2))
 
 # save names dictionary
 df = pd.DataFrame.from_dict(data = gbk_names_dict, orient='index')
-df.columns = ["New name"]
+df.columns = ["new_name"]
 df.to_csv(gbk_dir + "/gbk_renamed_dict.csv")
 
 # rename files
