@@ -4,6 +4,8 @@ tests/
 reviewer_comments.docx
 
 data_test/
+data/
+old_scripts/
 
 1.fill_database/.ipynb_checkpoints
 
