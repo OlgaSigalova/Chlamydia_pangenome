@@ -10,8 +10,8 @@ import fnmatch
 
 ################ Input: modify as needed ##########################################
 
-gbk_dir = "/Users/sigalova/Desktop/Chlamydia_pangenome/data_test/"
-output_dir = gbk_dir
+gbk_dir = "/home/bsgroup/Chlamydia/genomes_apr_2019"
+output_dir = "/home/bsgroup/Chlamydia/gbk_parsed"
 
 # match GBK files in the input directory
 gbk_files = fnmatch.filter(os.listdir(gbk_dir), '*.gbk')
