@@ -10,8 +10,8 @@ import fnmatch
 
 ################ Input: modify as needed ##########################################
 
-gbk_dir = "/home/bsgroup/Chlamydia/genomes_apr_2019"
-output_dir = "/home/bsgroup/Chlamydia/gbk_parsed"
+gbk_dir = "/Users/sigalova/Desktop/Chlamydia_pangenome/data/genomes_combined_filt"
+output_dir = "/Users/sigalova/Desktop/Chlamydia_pangenome/data/gbk_parsed/filt"
 
 # match GBK files in the input directory
 gbk_files = fnmatch.filter(os.listdir(gbk_dir), '*.gbk')
@@ -25,19 +25,19 @@ files=('Chlamydia_proteins.fasta','Chlamydia_proteins.txt', 'Chlamydia_frameshif
 
 for out_file in files:
     try:
-        os.remove(output_dir + out_file)
+        os.remove(output_dir + "/" + out_file)
     except:
         pass
         
-output_handle1 = open(output_dir+'Chlamydia_proteins.fasta', "a")
+output_handle1 = open(output_dir + "/" + 'Chlamydia_proteins.fasta', "a")
 
-output_handle2 = open(output_dir+'Chlamydia_proteins.txt', "a")
+output_handle2 = open(output_dir + "/" + 'Chlamydia_proteins.txt', "a")
 output_handle2.write("OrthMCL_prot_code\tOrthMCL_genome_code\tproduct\tstart\tend\tstrand\tlength\tframeshift\tnucl_seq\ttranslation\tGO_list\tEC_list\n")
 
-output_handle3 = open(output_dir+'Chlamydia_frameshifts.txt', "a")
+output_handle3 = open(output_dir + "/" + 'Chlamydia_frameshifts.txt', "a")
 output_handle3.write("frameshift_id\tOrthMCL_prot_code\tfs_number\tto_end\tgap_size\n")
 
-output_handle4 = open(output_dir+'Chlamydia_frameshifted_proteins.txt', "a")
+output_handle4 = open(output_dir + "/" + 'Chlamydia_frameshifted_proteins.txt', "a")
 output_handle4.write("OrthMCL_prot_code\tnum_frameshifts\tto_end_arr\tgap_size_arr\tnucl_seq_uc\n")
 
 ###################################################################################
